@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import Card from './components/Card'
 
 const cardImages = [
   {"src": "/img/helmet-1.png"},
@@ -13,6 +14,8 @@ const cardImages = [
 function App() {
   const [cards, setCards] = useState([]);
   const [moves, setMoves] = useState(0);
+  const [choiceOne, setChoiceOne] = useState(null);
+  const [choiceTwo, setChoiceTwo] = useState(null)
 
   const duplicateCards= () => cardImages.reduce((newCards,card)=>{
             return [...newCards, 
@@ -31,6 +34,11 @@ function App() {
     <div className="App">
       <h1>Magic Match</h1>
       <button onClick={shuffleCards}>New Game</button>
+      <div className='card-grid'>
+        {cards.map(card =>
+              <Card card={card} key={card.id}/>
+          )}
+      </div>
     </div>
   );
 }
