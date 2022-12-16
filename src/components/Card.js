@@ -1,18 +1,16 @@
- import { useState } from 'react'
 import './Card.css'
  
- const Card = ({card}) =>{
-  const [cover, setCover] = useState(true)
+ const Card = ({card, selectCard, covered}) =>{
   
   function uncover(){
-      setCover(false)
+      selectCard(card)
   }
 
     return(
         <div className='card'>
                 <div>
-                  {!cover && <img src={card.src} className="front" alt='card front'/>}
-                  {cover && <img src="/img/cover.png" onClick={uncover} className="back" alt='card back'/>}
+                  {!covered && <img src={card.src} className="front" alt='card front'/>}
+                  {covered && <img src="/img/cover.png" onClick={uncover} className="back" alt={card.src}/>}
                 </div>
         </div>
     )
